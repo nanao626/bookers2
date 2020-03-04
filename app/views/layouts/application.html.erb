@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bookers2</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+  <header class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+      <nav class='nav navbar-nav navbar-left' >
+        <span>Bookers</span>
+      </nav>
+      <nav>
+        <% if user_signed_in? %>
+          <ul class="nav navbar-nav navbar-right">
+              <li><a class="glyphicon glyphicon-home home" href="/users/13066"> Home</a></li>
+              <li><a class="glyphicon glyphicon-user users" href="/users"> Users</a></li>
+              <li><a class="glyphicon glyphicon-book books" href="/books"> Books</a></li>
+              <li><%= link_to "logout",destroy_user_session_path, method: :delete %></li>
+          </ul>
+        <% else %>
+          <ul class="nav navbar-nav navbar-right">
+              <li><a class="glyphicon glyphicon-home home" href="/users/13066"> Home</a></li>
+              <li><a class="glyphicon glyphicon-user users" href="/users"> About</a></li>
+              <li><%= link_to "sign up",new_user_registration_path %></li>
+              <li><%= link_to "login", new_user_session_path %></li>
+          </ul>
+        <% end %>
+      </nav>
+    </div>
+    </header>
+    <%= yield %>
+  <footer><p>CopyRight Infratop.inc</p></footer>
+  </body>
+</html>
