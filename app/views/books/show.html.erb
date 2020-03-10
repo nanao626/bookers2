@@ -1,0 +1,44 @@
+<%= render '/left', book: @book ,book_new: @book_new, user: @user%>
+
+<h3>welcome to Bookers !!</h3>
+<div class='col-xs-9'>
+<h2>Books</h2>
+
+
+  <%= @book.title %>
+  <%= @book.body %>
+</tr>
+</thead>
+
+<% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+<table>
+<h2>Book detail</h2>
+    <tbody>
+    <tr>
+      <td>
+        <%= link_to user_path(@user.id) do %>
+        <%= attachment_image_tag @book.user, :profile_image,  :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %>
+        <%= @user.name%>
+        <% end %>
+      </td>
+
+     <td><%= @book.title %></td>
+     <td><%= @book.body %></td>
+     <% if current_user == @book.user%>
+        <td><%= link_to "Edit", edit_book_path(@book) ,class: "btn-sm btn-success edit_book_21882"%></td>
+        <td><%= link_to "Destroy", book_path(@book), method: :delete ,class: "btn-sm btn-danger destroy_book_21882"%></td>
+        <% else %>
+        <td></td>
+        <td></td>
+     <% end %>
+     </tr>
+     <tr>
+     </tr>
+  </tr>
+    </tbody>
+</table>

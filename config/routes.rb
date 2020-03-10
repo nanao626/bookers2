@@ -8,4 +8,5 @@ Rails.application.routes.draw do
   get 'home/about' => 'books#about'
   # get "login" =>"users#login_from"
   # post "logout" =>"users#login_from"
+  resources :users, only: [:show, :edit]
 end

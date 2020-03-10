@@ -1,1 +1,34 @@
-<p>usersのshow画面です</p>
+<!-- 左側 -->
+<div class="row">
+<!-- successfully message -->
+  <% if flash[:notice] %>
+      <div class="flash">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+  <%= render '/left', book: @book ,book_new: @book_new, user: @user%>
+  <!-- 右側 -->
+  <div class="col-xs-9">
+  <h2>Books</h2>
+
+  <table class='table table-hover table-inverse'>
+  <thead>
+  <tr> 
+    <th></th>
+    <th>Title</th>
+    <th>Opinion</th>
+  </tr>
+  
+  </thead>
+  
+  <tbody>
+  <% @books.each do |book| %>
+    <tr>
+    <td><%= attachment_image_tag book.user, :profile_image,  :fill, 60, 60, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg" %></td>
+    <td><%= link_to book.title, book_path(book.id)%></td>
+    <td><%= book.body %></td>
+    </tr>
+  <% end %>
+  </tbody>
+  </table>
+  </div>
